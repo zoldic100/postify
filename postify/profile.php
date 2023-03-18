@@ -285,13 +285,6 @@ if (isset($_SESSION['email'])) :
 
                                         ?>
 
-
-
-
-
-
-
-
                                                     <div class="col-10 col-md-6 col-lg-4">
                                                         <div class="card" style="background-color: #f2f2f2; border: unset;">
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal<?php echo $post['post_id'] ?>">
