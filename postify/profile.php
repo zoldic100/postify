@@ -51,8 +51,8 @@ if (isset($_SESSION['email'])) :
     while ($data = mysqli_fetch_array($user_profile)) :
         $id_for_post = $data['id'];
         $post_number_result = mysqli_query($conn, "SELECT COUNT(*) FROM post WHERE user_id='$id_for_post'");
-$post_number_array = mysqli_fetch_array($post_number_result);
-$post_number = $post_number_array[0];
+        $post_number_array = mysqli_fetch_array($post_number_result);
+        $post_number = $post_number_array[0];
 
 
 
@@ -67,6 +67,67 @@ $post_number = $post_number_array[0];
             <meta name="viewport" content="width=device-width">
             <link rel="stylesheet" href="../bootstrap-file/css/profile.css">
         </head>
+        <style>
+            .model-popup .modal-dialog {
+                max-width: 62%;
+            }
+
+            .model-popup .modal-body {
+                padding: 0;
+                background-color: #f2f2f2;
+            }
+
+            .model-popup .modal-body .row {
+                margin-right: 0;
+                padding-right: 0;
+
+            }
+
+            .model-popup .modal-body img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .model-popup .modal-body .modal-body-content {
+                background-color: #f2f2f2;
+                padding-right: 01px;
+
+                height: auto;
+            }
+
+            .model-popup .modal-body form input {
+                background-color: #f2f2f2;
+
+                border: unset;
+
+            }
+
+            .model-popup .modal-body form input[type=text]:active {
+                box-shadow: none;
+
+                border: unset;
+            }
+
+            .model-popup .modal-body form input[type=text]:focus {
+                box-shadow: none;
+
+                border: unset;
+            }
+
+            .model-popup .modal-body form input[type=submit]:hover {
+                color: black;
+                font-weight: bold;
+
+            }
+
+            .model-popup .modal-body form input[type=submit] {
+                color: blueviolet;
+                font-weight: lighter;
+
+
+
+            }
+        </style>
 
         <body>
             <!-- popup form -->
@@ -95,8 +156,6 @@ $post_number = $post_number_array[0];
 
 
             <div class="container-fluid">
-
-
                 <div class="row">
                     <div class=" col-sm-4 col-4 w-25 h-100 d-none  d-md-block ">
                         <div class="aside d-flex flex-column  border-end flex-shrink-0 p-3 " style="width: 280px; height:90vh;  position: fixed; ">
@@ -228,67 +287,7 @@ $post_number = $post_number_array[0];
 
 
 
-                                                    <style>
-                                                        .modal .modal-dialog {
-                                                            max-width: 62%;
-                                                        }
 
-                                                        .modal .modal-body {
-                                                            padding: 0;
-                                                            background-color: #f2f2f2;
-                                                        }
-
-                                                        .modal .modal-body .row {
-                                                            margin-right: 0;
-                                                            padding-right: 0;
-
-                                                        }
-
-                                                        .modal .modal-body img {
-                                                            max-width: 100%;
-                                                            height: auto;
-                                                        }
-
-                                                        .modal .modal-body .modal-body-content {
-                                                            background-color: #f2f2f2;
-                                                            padding-right: 01px;
-
-                                                            height: auto;
-                                                        }
-
-                                                        .modal .modal-body form input {
-                                                            background-color: #f2f2f2;
-
-                                                            border: unset;
-
-                                                        }
-
-                                                        .modal .modal-body form input[type=text]:active {
-                                                            box-shadow: none;
-
-                                                            border: unset;
-                                                        }
-
-                                                        .modal .modal-body form input[type=text]:focus {
-                                                            box-shadow: none;
-
-                                                            border: unset;
-                                                        }
-
-                                                        .modal .modal-body form input[type=submit]:hover {
-                                                            color: black;
-                                                            font-weight: bold;
-
-                                                        }
-
-                                                        .modal .modal-body form input[type=submit] {
-                                                            color: blueviolet;
-                                                            font-weight: lighter;
-
-
-
-                                                        }
-                                                    </style>
 
 
 
@@ -304,7 +303,7 @@ $post_number = $post_number_array[0];
                                                         </div>
                                                     </div>
 
-                                                    <div class="modal fade" id="imageModal<?php echo $post['post_id'] ?>" tabindex="-1" aria-labelledby="imageModalLabel<?php echo $post['post_id'] ?>" aria-hidden="true">
+                                                    <div class="modal model-popup fade" id="imageModal<?php echo $post['post_id'] ?>" tabindex="-1" aria-labelledby="imageModalLabel<?php echo $post['post_id'] ?>" aria-hidden="true">
                                                         <div class="modal-dialog modal-xl">
                                                             <div class="modal-content">
                                                                 <div class="modal-body">
@@ -315,17 +314,18 @@ $post_number = $post_number_array[0];
                                                                         <div class="col-md-4 p-0 modal-body-content  d-flex flex-column justify-content-between">
 
                                                                             <div class="row ms-2 mt-3">
-                                                                            <div class=" col-6 text-start d-inline ">
-                                                                                <div class="profile-img d-flex align-items-end d-inline">
-                                                                                   
+                                                                                <div class=" col-6 text-start d-inline ">
+                                                                                    <div class="profile-img d-flex align-items-end d-inline">
+
 
                                                                                         <img src="../media/profile_img/<?php echo $data['profile'] ?>" alt="" width="64" height="64" class="rounded-circle me-2">
                                                                                         <strong><?php echo $data['fname'] . " " . $data['lname'] ?></strong>
-                                                                                    
-                                                                                    
+
+
+                                                                                    </div>
+
                                                                                 </div>
-                                                                                
-                                                                                </div>
+                                                                                <!-- 3 point drop down -->
                                                                                 <div class=" col-6 text-end d-inline ">
 
                                                                                     <div class="btn-group dropend">
@@ -334,7 +334,7 @@ $post_number = $post_number_array[0];
                                                                                         </button>
                                                                                         <ul class="dropdown-menu">
                                                                                             <li><a class="dropdown-item text-danger" href="delete.php?id=<?php echo  $post['post_id'] ?>">Delelte</a></li>
-                                                                                            
+
                                                                                             <li><a class="dropdown-item" href="#">Share</a></li>
                                                                                             <li><a class="dropdown-item" href="#">Cancel</a></li>
                                                                                         </ul>
@@ -342,77 +342,50 @@ $post_number = $post_number_array[0];
 
 
                                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                    
+
                                                                                 </div>
-                                                                                
-                                                                                </div>
-                                                                                <hr>
-                                                                                <div class="row ms-2 mt-3">
-                                                                            <div class=" col-3 align-items-center text-start d-inline ">
-                                                                                <div class="profile-img d-flex align-items-end d-inline">
+
+                                                                            </div>
+                                                                            <hr>
+                                                                            <!-- popup comment -->
+                                                                            <div class="row ms-2 mt-3">
+                                                                                <div class=" col-3 align-items-center text-start d-inline ">
+                                                                                    <div class="profile-img d-flex align-items-end d-inline">
                                                                                         <img src="../media/profile_img/<?php echo $data['profile'] ?>" alt="" width="72" height="72" class="rounded-circle me-2">
-                                                                                </div>
-                                                                                
+                                                                                    </div>
+
                                                                                 </div>
                                                                                 <div class="text-start mt-3  col-7 ">
-                                                                                     <strong><?php echo $data['fname'] . " " . $data['lname'] ?></strong>
-                                                                                     <span class="d-block text-trance text-truncate " style="width:100%;"><?php echo $post['text'] ?></span>
+                                                                                    <strong><?php echo $data['fname'] . " " . $data['lname'] ?></strong>
+                                                                                    <span class="d-block text-trance text-truncate " style="width:100%;"><?php echo $post['text'] ?></span>
 
-                                                                                </div>
-                                                                                </div>
-                                                                                <div class="text-center mt-auto">
-                                                                                    <form method="post" action="">
-
-                                                                                        <div class="input-group ms-0 ps-0  mb-3">
-                                                                                            <input name="comment" type="text" class="form-control" placeholder="Add a comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                                                                                            <input class="btn btn-outline-secondary" value="Post" type="submit" id="button-addon2">
-                                                                                        </div>
-                                                                                    </form>
                                                                                 </div>
                                                                             </div>
+                                                                            <div class="text-center mt-auto">
+                                                                                <form method="post" action="">
 
-
+                                                                                    <div class="input-group ms-0 ps-0  mb-3">
+                                                                                        <input name="comment" type="text" class="form-control" placeholder="Add a comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                                                                        <input class="btn btn-outline-secondary" value="Post" type="submit" id="button-addon2">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
                                                                         </div>
+
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
 
 
-                                                        <script>
-                                                            const imageLinks = document.querySelectorAll("[data-bs-toggle='modal']");
 
-                                                            imageLinks.forEach((link) => {
-                                                                link.addEventListener("click", (event) => {
-                                                                    event.preventDefault();
-                                                                    const modalTarget = link.getAttribute("data-bs-target");
-                                                                    const modal = document.querySelector(modalTarget);
-                                                                    const modalBody = modal.querySelector(".modal-body");
-                                                                    const image = link.querySelector("img");
 
-                                                                    // Remove old image from modal
-                                                                    const oldImage = modalBody.querySelector("img");
-                                                                    if (oldImage) {
-                                                                        oldImage.remove();
-                                                                    }
 
-                                                                    // Create new image element
-                                                                    const newImage = document.createElement("img");
-                                                                    newImage.src = image.src;
-                                                                    newImage.classList.add("img-fluid");
 
-                                                                    // Add new image to modal
-                                                                    modalBody.querySelector(".col-md-8").appendChild(newImage);
-
-                                                                    // Show modal
-                                                                    const modalInstance = new bootstrap.Modal(modal);
-                                                                    modalInstance.show();
-                                                                });
-                                                            });
-                                                        </script>
-
-                                                        <!-- delete modal -->
-                                                        <!-- <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+                                                    <!-- delete modal -->
+                                                    <!-- <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -431,14 +404,45 @@ $post_number = $post_number_array[0];
             </div> -->
 
 
-                                                    <?php endwhile ?>
                                                 <?php endwhile ?>
-                                            <?php endif ?>
+                                            <?php endwhile ?>
+                                        <?php endif ?>
 
-                                                    </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <script>
+                                const imageLinks = document.querySelectorAll("[data-bs-toggle='modal']");
+
+                                imageLinks.forEach((link) => {
+                                    link.addEventListener("click", (event) => {
+                                        event.preventDefault();
+                                        const modalTarget = link.getAttribute("data-bs-target");
+                                        const modal = document.querySelector(modalTarget);
+                                        const modalBody = modal.querySelector(".modal-body");
+                                        const image = link.querySelector("img");
+
+                                        // Remove old image from modal
+                                        const oldImage = modalBody.querySelector("img");
+                                        if (oldImage) {
+                                            oldImage.remove();
+                                        }
+
+                                        // Create new image element
+                                        const newImage = document.createElement("img");
+                                        newImage.src = image.src;
+                                        newImage.classList.add("img-fluid");
+
+                                        // Add new image to modal
+                                        modalBody.querySelector(".col-md-8").appendChild(newImage);
+
+                                        // Show modal
+                                        const modalInstance = new bootstrap.Modal(modal);
+                                        modalInstance.show();
+                                    });
+                                });
+                            </script>
                         </main>
 
                     </div>

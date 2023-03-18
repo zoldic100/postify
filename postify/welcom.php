@@ -97,14 +97,7 @@ if (isset($_SESSION['email'])) :
 ?>
 
 
-        <html>
-
-        <head>
-
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" href="../bootstrap-file/css/profile.css">
-        </head>
+   
         <style>
             .modal .modal-dialog {
                 max-width: 62%;
@@ -644,17 +637,6 @@ if (isset($_SESSION['email'])) :
 
             </div>
         </body>
-
-        </html>
-
-
-
-
-
-
-
-
-
     <?php
     endwhile;
 
