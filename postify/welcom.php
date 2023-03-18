@@ -254,7 +254,7 @@ if (isset($_SESSION['email'])) :
                                     while ($post = mysqli_fetch_array($user_post)) :
                                         $post_user_id = $post['user_id'];
                                            // to create a comment we need   user_id and post id 
-                                        
+                                        //test
                                         $user_info = mysqli_query($conn, "SELECT * FROM users WHERE  id='$post_user_id'   ");
                                         while ($user_post_from_db = mysqli_fetch_array($user_info)) : ?>
 
