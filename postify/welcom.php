@@ -105,6 +105,106 @@ if (isset($_SESSION['email'])) :
             <meta name="viewport" content="width=device-width">
             <link rel="stylesheet" href="../bootstrap-file/css/profile.css">
         </head>
+        <style>
+            .modal .modal-dialog {
+                max-width: 62%;
+            }
+
+            .modal .modal-body {
+                padding: 0;
+                background-color: #f2f2f2;
+            }
+
+            .modal .modal-body .row {
+                margin-right: 0;
+                padding-right: 0;
+
+            }
+
+            .modal .modal-body img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .modal .modal-body .modal-body-content {
+                background-color: #f2f2f2;
+                padding-right: 01px;
+
+                height: auto;
+            }
+
+            .modal .modal-body form input {
+                background-color: #f2f2f2;
+
+                border: unset;
+
+            }
+
+            .modal .modal-body form input[type=text]:active {
+                box-shadow: none;
+
+                border: unset;
+            }
+
+            .modal .modal-body form input[type=text]:focus {
+                box-shadow: none;
+
+                border: unset;
+            }
+
+            .modal .modal-body form input[type=submit]:hover {
+                color: black;
+                font-weight: bold;
+
+            }
+
+            .modal .modal-body form input[type=submit] {
+                color: blueviolet;
+                font-weight: lighter;
+
+
+
+            }
+
+            .mother_card  form input {
+                background-color: #f2f2f2;
+
+                border: unset;
+                margin-top: 10px;
+                border-bottom: #a6a4a1 solid 1px;
+
+            }
+
+            .mother_card  form input[type=text]:active {
+                box-shadow: none;
+
+                
+                background-color: #f2f2f2;
+            }
+
+            .mother_card  form input[type=text]:focus {
+                box-shadow: none;
+                background-color: #f2f2f2;
+
+                
+            }
+
+            .mother_card  form input[type=submit]:hover {
+                color: black;
+                font-weight: bold;
+                background-color: #f2f2f2;
+
+            }
+
+            .mother_card  form input[type=submit] {
+                color: gray;
+                font-weight: lighter;
+                background-color: #f2f2f2;
+
+
+
+            }
+        </style>
 
         <body>
             <!-- popup form -change profile -->
@@ -242,7 +342,7 @@ if (isset($_SESSION['email'])) :
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- post_area -->
                     <div class="posts mt-5 pt-5 col-sm-4 col-md-6 col-12 w-50">
                         <main>
@@ -253,8 +353,8 @@ if (isset($_SESSION['email'])) :
                                     $user_post = mysqli_query($conn, "SELECT * FROM post ORDER BY create_at desc  ");
                                     while ($post = mysqli_fetch_array($user_post)) :
                                         $post_user_id = $post['user_id'];
-                                           // to create a comment we need   user_id and post id 
-                                        //test
+                                        // to create a comment we need   user_id and post id 
+
                                         $user_info = mysqli_query($conn, "SELECT * FROM users WHERE  id='$post_user_id'   ");
                                         while ($user_post_from_db = mysqli_fetch_array($user_info)) : ?>
 
@@ -290,24 +390,35 @@ if (isset($_SESSION['email'])) :
                                                         </div>
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal<?php echo $post['post_id'] ?>">
 
-                                                            <img src="../media/post_img/<?php echo $post['image'] ?>" class="bd-placeholder-img card-img-top" alt="" width="100%" class="rounded-circle me-2">
+                                                            <img src="../media/post_img/<?php echo $post['image'] ?>" class="bd-placeholder-img card-img-top" alt="" width="100%">
 
                                                         </a>
                                                         <!-- card body -->
-                                                        <div class="card-body">
+                                                        <div class="card-body  p-0 m-0 ps-1 pt-1">
+                                                            <div class="d-flex justify-content-between  align-items-center">
+                                                                <div class="btn-group ps-0 ms-0">
+                                                                    <a href="#" class="link-dark fs-4 ">
+                                                                        <i class="fa-regular fa-heart"></i>
+                                                                    </a>
+                                                                    <a href="#" class="link-dark fs-4 ms-2" data-bs-toggle="modal" data-bs-target="#imageModal<?php echo $post['post_id'] ?>">
+                                                                        <img src="../media/post_img/<?php echo $post['image'] ?>" class="bd-placeholder-img d-none card-img-top" alt="" width="100%">
 
-                                                            <p class="card-text">
-                                                                <?php echo $post['text'] ?>
-                                                                .</p>
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <div class="btn-group">
-                                                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                                        <i class="fa-regular fa-comment"></i>
+                                                                    </a>
                                                                 </div>
-                                                                <small class="text-muted"><?php
-                                                                                            echo getTimeDifference($post['create_at']) . " "  ?>
-                                                                </small>
+                                                                <small class="text-muted"><?php echo getTimeDifference($post['create_at']) . " "  ?></small>
                                                             </div>
+                                                            <!-- description -->
+                                                            <strong class="fs-6"><?php echo $user_post_from_db['fname'] . " " . $user_post_from_db['lname'] ?></strong>
+                                                            <small class="card-text pt-2"><?php echo $post['text'] ?>.</small>
+                                                            <!-- comment form -->
+                                                            <form method="Post" action="">
+
+                                                                <div class="input-group ms-0 ps-0  mb-3">
+                                                                    <input name="get_id" type="hidden" class="form-control" value="15"> <input name="comment" type="text" class="form-control" placeholder="Add a comment..." aria-label="Recipient's username" aria-describedby="button-addon2" spellcheck="false" data-ms-editor="true">
+                                                                    <input class="btn btn-outline-secondary" value="Post" type="submit" id="button-addon2">
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                         <!-- popup model -->
                                                         <div class="modal fade" id="imageModal<?php echo $post['post_id'] ?>" tabindex="-1" aria-labelledby="imageModalLabel<?php echo $post['post_id'] ?>" aria-hidden="true">
@@ -388,10 +499,14 @@ if (isset($_SESSION['email'])) :
                                                                                     </div>
                                                                                 </div>
                                                                                 <!-- create comment -->
-                                                                                <div class="text-center mt-auto">
-                                                                                    <form method="post" action="">
+                                                                                <div class="comment text-center mt-auto ">
+                                                                                    <form method="Post" action="">
 
                                                                                         <div class="input-group ms-0 ps-0  mb-3">
+                                                                                            <?php
+                                                                                            echo '<input name="get_id" type="hidden" class="form-control"  value="' . $post["post_id"] . '">';?>
+
+                                                                                            
                                                                                             <input name="comment" type="text" class="form-control" placeholder="Add a comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
                                                                                             <input class="btn btn-outline-secondary" value="Post" type="submit" id="button-addon2">
                                                                                         </div>
@@ -411,104 +526,45 @@ if (isset($_SESSION['email'])) :
 
                                             </div>
 
-                                            <style>
-                                                .modal .modal-dialog {
-                                                    max-width: 62%;
-                                                }
-
-                                                .modal .modal-body {
-                                                    padding: 0;
-                                                    background-color: #f2f2f2;
-                                                }
-
-                                                .modal .modal-body .row {
-                                                    margin-right: 0;
-                                                    padding-right: 0;
-
-                                                }
-
-                                                .modal .modal-body img {
-                                                    max-width: 100%;
-                                                    height: auto;
-                                                }
-
-                                                .modal .modal-body .modal-body-content {
-                                                    background-color: #f2f2f2;
-                                                    padding-right: 01px;
-
-                                                    height: auto;
-                                                }
-
-                                                .modal .modal-body form input {
-                                                    background-color: #f2f2f2;
-
-                                                    border: unset;
-
-                                                }
-
-                                                .modal .modal-body form input[type=text]:active {
-                                                    box-shadow: none;
-
-                                                    border: unset;
-                                                }
-
-                                                .modal .modal-body form input[type=text]:focus {
-                                                    box-shadow: none;
-
-                                                    border: unset;
-                                                }
-
-                                                .modal .modal-body form input[type=submit]:hover {
-                                                    color: black;
-                                                    font-weight: bold;
-
-                                                }
-
-                                                .modal .modal-body form input[type=submit] {
-                                                    color: blueviolet;
-                                                    font-weight: lighter;
 
 
 
-                                                }
-                                            </style>
 
-                                            <script>
-                                                const imageLinks = document.querySelectorAll("[data-bs-toggle='modal']");
-
-                                                imageLinks.forEach((link) => {
-                                                    link.addEventListener("click", (event) => {
-                                                        event.preventDefault();
-                                                        const modalTarget = link.getAttribute("data-bs-target");
-                                                        const modal = document.querySelector(modalTarget);
-                                                        const modalBody = modal.querySelector(".modal-body");
-                                                        const image = link.querySelector("img");
-
-                                                        // Remove old image from modal
-                                                        const oldImage = modalBody.querySelector("img");
-                                                        if (oldImage) {
-                                                            oldImage.remove();
-                                                        }
-
-                                                        // Create new image element
-                                                        const newImage = document.createElement("img");
-                                                        newImage.src = image.src;
-                                                        newImage.classList.add("img-fluid");
-
-                                                        // Add new image to modal
-                                                        modalBody.querySelector(".col-md-8").appendChild(newImage);
-
-                                                        // Show modal
-                                                        const modalInstance = new bootstrap.Modal(modal);
-                                                        modalInstance.show();
-                                                    });
-                                                });
-                                            </script>
 
                                         <?php endwhile; ?>
 
                                     <?php endwhile; ?>
+                                    <script>
+                                        const imageLinks = document.querySelectorAll("[data-bs-toggle='modal']");
 
+                                        imageLinks.forEach((link) => {
+                                            link.addEventListener("click", (event) => {
+                                                event.preventDefault();
+                                                const modalTarget = link.getAttribute("data-bs-target");
+                                                const modal = document.querySelector(modalTarget);
+                                                const modalBody = modal.querySelector(".modal-body");
+                                                const image = link.querySelector("img");
+
+                                                // Remove old image from modal
+                                                const oldImage = modalBody.querySelector("img");
+                                                if (oldImage) {
+                                                    oldImage.remove();
+                                                }
+
+                                                // Create new image element
+                                                const newImage = document.createElement("img");
+                                                newImage.src = image.src;
+                                                newImage.classList.add("img-fluid");
+
+                                                // Add new image to modal
+                                                modalBody.querySelector(".col-md-8").appendChild(newImage);
+
+                                                // Show modal
+                                                const modalInstance = new bootstrap.Modal(modal);
+                                                modalInstance.show();
+                                            });
+                                        });
+                                    </script>
                                 </div>
                             </div>
 
