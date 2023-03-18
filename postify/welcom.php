@@ -99,59 +99,59 @@ if (isset($_SESSION['email'])) :
 
    
         <style>
-            .modal .modal-dialog {
+            .popup-model .modal-dialog {
                 max-width: 62%;
             }
 
-            .modal .modal-body {
+            .popup-model .modal-body {
                 padding: 0;
                 background-color: #f2f2f2;
             }
 
-            .modal .modal-body .row {
+            .popup-model .modal-body .row {
                 margin-right: 0;
                 padding-right: 0;
 
             }
 
-            .modal .modal-body img {
+            .popup-model .modal-body img {
                 max-width: 100%;
                 height: auto;
             }
 
-            .modal .modal-body .modal-body-content {
+            .popup-model .modal-body .modal-body-content {
                 background-color: #f2f2f2;
                 padding-right: 01px;
 
                 height: auto;
             }
 
-            .modal .modal-body form input {
+            .popup-model .modal-body form input {
                 background-color: #f2f2f2;
 
                 border: unset;
 
             }
 
-            .modal .modal-body form input[type=text]:active {
+            .popup-model .modal-body form input[type=text]:active {
                 box-shadow: none;
 
                 border: unset;
             }
 
-            .modal .modal-body form input[type=text]:focus {
+            .popup-model .modal-body form input[type=text]:focus {
                 box-shadow: none;
 
                 border: unset;
             }
 
-            .modal .modal-body form input[type=submit]:hover {
+            .popup-model .modal-body form input[type=submit]:hover {
                 color: black;
                 font-weight: bold;
 
             }
 
-            .modal .modal-body form input[type=submit] {
+            .popup-model .modal-body form input[type=submit] {
                 color: blueviolet;
                 font-weight: lighter;
 
@@ -414,7 +414,7 @@ if (isset($_SESSION['email'])) :
                                                             </form>
                                                         </div>
                                                         <!-- popup model -->
-                                                        <div class="modal fade" id="imageModal<?php echo $post['post_id'] ?>" tabindex="-1" aria-labelledby="imageModalLabel<?php echo $post['post_id'] ?>" aria-hidden="true">
+                                                        <div class="modal popup-model fade" id="imageModal<?php echo $post['post_id'] ?>" tabindex="-1" aria-labelledby="imageModalLabel<?php echo $post['post_id'] ?>" aria-hidden="true">
                                                             <div class="modal-dialog modal-xl">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
@@ -632,15 +632,12 @@ if (isset($_SESSION['email'])) :
 
             </div>
             </div>
-
-
-
             </div>
         </body>
-    <?php
+<?php
     endwhile;
 
-else :
+    else :
     $pageTitle = "Postify";
     include './layout.php'; ?>
 
