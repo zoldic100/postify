@@ -2,17 +2,13 @@
 session_start();
 $pageTitle = "Login";
 
-
-
-include './layout.php'; ?>
-
-<?php
+include './layout.php'; 
 include_once('../db/conn.php');
+?>
+<?php
 
-
-
-$falseEmailOrPass = '';
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $falseEmailOrPass = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') :
 
     $email = mysqli_real_escape_string($conn,  $_POST['email']);
     $password = mysqli_real_escape_string($conn,  $_POST['password']);
@@ -43,23 +39,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $falseEmailOrPass = 'Incorrect email or password. Please try again.';
         }
-    }
-}
+    };
+endif;
 ?>
 <div class="container">
-    <div class="row">
-        
 
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
+    <div class="row">
+
+        <!-- logo section -->
+
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+
         <div class="row">
         <div class="col-md-6 w-100 ">
             <h2 class="display-1 fw-bold text-lg-start text-md-center" >Postify</h2>
             <p class="display-6">Postify, share and stay connected with your community.</p>
         </div>
         </div>
-        </div>
+
+      </div>
         
-        
+      <!-- form section -->
 
         <div class="col-md-6">
             <div class="login">

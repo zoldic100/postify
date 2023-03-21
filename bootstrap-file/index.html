@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Roboto:wght@100;300&display=swap"
-        rel="stylesheet">
-    <title>Home</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/all.min.css">
-    <link rel="stylesheet" href="/css/my.css">
-</head>
-<body>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/all.min.js"></script>
-    <script type="module" src="./js/my.js"></script>
-</body>
-</html>
+<form method="Post" action="">
+
+    <div class="input-group ms-0 ps-0  mb-3">
+        <?php
+                        echo '<input name="get_id" type="hidden" class="form-control"  value="'. $post["post_id"].'">'; ?>
+
+
+        <input name="comment" type="text"
+            class="form-control"
+            placeholder="Add a comment..."
+            aria-label="Recipient's username"
+            aria-describedby="button-addon2">
+        <input class="btn btn-outline-secondary"
+            value="Post" type="submit"
+            id="button-addon2">
+    </div>
+</form>

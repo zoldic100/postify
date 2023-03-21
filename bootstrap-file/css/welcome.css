@@ -1,0 +1,154 @@
+ /* Set default styles for all screen sizes */
+
+body{
+width: 100%;
+}
+  
+
+  .posts .album {
+    max-width: 800px;
+  }
+  .popup-model ul li {
+    background-color: #f2f2f2;
+  }
+  .popup-model ul {
+    overflow-y: scroll;
+    height: 50vh;
+  }
+  .popup-model ul::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .popup-model ul::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  .popup-model ul::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+  }
+  .popup-model ul::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  .popup-model .list-group-item svg {
+    display: none;
+  }
+  .popup-model .list-group-item:hover svg {
+    display: inline-block;
+  }
+  .popup-model .modal-dialog {
+    max-width: 100%;
+  }
+  .popup-model .modal-body {
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+  .popup-model .modal-body .row {
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .popup-model .modal-body img {
+    max-width: 100%;
+    height: auto;
+  }
+  .popup-model .modal-body .modal-body-content {
+    background-color: #f2f2f2;
+    padding-right: 01px;
+    height: auto;
+  }
+  .popup-model .modal-body form input {
+    background-color: #f2f2f2;
+    border: unset;
+  }
+  .popup-model .modal-body form input[type=text]:active {
+    box-shadow: none;
+    border: unset;
+  }
+  .popup-model .modal-body form input[type=text]:focus {
+    box-shadow: none;
+    border: unset;
+  }
+  .popup-model .modal-body form input[type=submit]:hover {
+    color: black;
+    font-weight: bold;
+  }
+  .popup-model .modal-body form input[type=submit] {
+    color: blueviolet;
+    font-weight: lighter;
+  }
+  .album form input {
+    background-color: #f2f2f2;
+    border: unset;
+    margin-top: 10px;
+    border-bottom: #a6a4a1 solid 1px;
+  }
+  .album form input[type=text]:active {
+    box-shadow: none;
+    background-color: #f2f2f2;
+  }
+  .album form input[type=text]:focus {
+    box-shadow: none;
+    background-color: #f2f2f2;
+  }
+  .album form input[type=submit]:hover {
+    color: black;
+    font-weight: bold;
+    background-color: #f2f2f2;
+  }
+  .album form input[type=submit] {
+    color: gray;
+    font-weight: lighter;
+    background-color: #f2f2f2;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .col-md-8{
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+
+  .col-md-2 {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+  .posts{
+    padding: 0px;
+    margin: 0px;
+  }
+  /* Make styles responsive for medium and small screens */
+  @media only screen and (max-width: 992px) {
+    .aside-right{
+      display: none;
+    }  
+    .aside-left{
+      display: none;
+    }  
+   
+  
+    .posts{ 
+      width: 100%;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        
+      }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        
+      }
+    .posts{ 
+      width: 100%;
+    }
+ 
+  }
+  

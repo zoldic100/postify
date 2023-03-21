@@ -10,26 +10,23 @@ if (isset($_SESSION['email'])) :
     include './layout.php';
     include_once('../db/conn.php');
 
-
-
-
-
     //if (isset($_POST['submit'])) :
+    // create comment
     if ($_SERVER['REQUEST_METHOD'] == 'POST') :
-        if(isset($_POST['get_id'])): 
-        $get_id = $_POST['get_id'];
+        if (isset($_POST['get_id'])) :
+            $get_id = $_POST['get_id'];
         endif;
-        if(isset($_POST['comment'])): 
-       $comment_txt = $_POST['comment'];
-         if(isset($comment_txt) || $comment_txt !=""){
-         $time = date('Y-m-d H:i:s');
-        $sql = " INSERT INTO `comment` (text,created_at,user_id,post_id) VALUES('$comment_txt','$time','$user_id',$get_id)"; // $get_id from hidden input input
-         mysqli_query($conn,$sql);
-         // to prevent tikrar l commment when refrech the page
-        echo '<meta http-equiv="Refrech" content="0; url=welcome.php">';
+        if (isset($_POST['comment'])) :
+            $comment_txt = $_POST['comment'];
+            if (isset($comment_txt) || $comment_txt != "") {
+                $time = date('Y-m-d H:i:s');
+                $sql = " INSERT INTO `comment` (text,created_at,user_id,post_id) VALUES('$comment_txt','$time','$user_id',$get_id)"; // $get_id from hidden input input
+                mysqli_query($conn, $sql);
+                // to prevent tikrar l commment when refrech the page
+                echo '<meta http-equiv="Refrech" content="0; url=welcome.php">';
+            }
+        endif;
 
-        } endif;
-       
 
         $error = [];
 
@@ -40,7 +37,7 @@ if (isset($_SESSION['email'])) :
             $errors[] = 'photo is requared';
         }
 
-
+        // crezate post
         if (!isset($errors)) {
 
             $file_name = $_FILES['profile']['name'];
@@ -68,11 +65,11 @@ if (isset($_SESSION['email'])) :
                 }
             }
         }
-         
 
 
-                                                                                   
-    
+
+
+
     endif;
 
 
@@ -113,212 +110,20 @@ if (isset($_SESSION['email'])) :
 
 
 
-<style>
-.popup-model ul li {
-    background-color: #f2f2f2;
 
-}
-.popup-model ul  {
-    overflow-y: scroll;
-     height:50vh;
-
-}
-.popup-model ul::-webkit-scrollbar {
-  width: 8px; /* adjust the width as desired */
-  height: 8px; /* adjust the height as desired */
-}
-
-.popup-model ul::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* or any color you prefer */
-}
-
-.popup-model ul::-webkit-scrollbar-thumb {
-  background-color: #888; /* or any color you prefer */
-  border-radius: 5px; /* adjust the border radius as desired */
-}
-
-.popup-model ul::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* or any color you prefer */
-}
-
-
-
-.popup-model .list-group-item svg {
-
-
-    display: none;
-}
-
-.popup-model .list-group-item:hover svg {
-    display: inline-block;
-}
-
-.popup-model .modal-dialog {
-    max-width: 62%;
-    
-    
-}
-
-.popup-model .modal-body {
-    padding: 0;
-    background-color: #f2f2f2;
-}
-
-.popup-model .modal-body .row {
-    margin-right: 0;
-    padding-right: 0;
-
-}
-
-.popup-model .modal-body img {
-    max-width: 100%;
-    height: auto;
-}
-
-.popup-model .modal-body .modal-body-content {
-    background-color: #f2f2f2;
-    padding-right: 01px;
-
-    height: auto;
-}
-
-.popup-model .modal-body form input {
-    background-color: #f2f2f2;
-
-    border: unset;
-
-}
-
-.popup-model .modal-body form input[type=text]:active {
-    box-shadow: none;
-
-    border: unset;
-}
-
-.popup-model .modal-body form input[type=text]:focus {
-    box-shadow: none;
-
-    border: unset;
-}
-
-.popup-model .modal-body form input[type=submit]:hover {
-    color: black;
-    font-weight: bold;
-
-}
-
-.popup-model .modal-body form input[type=submit] {
-    color: blueviolet;
-    font-weight: lighter;
-
-
-
-}
-
-.mother_card form input {
-    background-color: #f2f2f2;
-
-    border: unset;
-    margin-top: 10px;
-    border-bottom: #a6a4a1 solid 1px;
-
-}
-
-.mother_card form input[type=text]:active {
-    box-shadow: none;
-
-
-    background-color: #f2f2f2;
-}
-
-.mother_card form input[type=text]:focus {
-    box-shadow: none;
-    background-color: #f2f2f2;
-
-
-}
-
-.mother_card form input[type=submit]:hover {
-    color: black;
-    font-weight: bold;
-    background-color: #f2f2f2;
-
-}
-
-.mother_card form input[type=submit] {
-    color: gray;
-    font-weight: lighter;
-    background-color: #f2f2f2;
-
-
-
-}
-</style>
 
 <body>
     <!-- popup form -change profile -->
-    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">Change Image</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label" for="profile">Profile Pictue</label>
-                            <input type="file" name="profile" class="form-control" id="profile">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- popup form -create poste -->
-    <div class="modal fade" id="Create_Post" tabindex="-1" aria-labelledby="Create_PostLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="Create_PostLabel">Create Post</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label" for="profile">Profile Pictue</label>
-                            <input type="file" name="profile" class="form-control" id="profile">
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label" for="text">Description</label>
-                            <input type="text" name="text" class="form-control" id="text">
-                        </div>
-                    </div>
 
-
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <?php include('./welcome_popup.php'); ?>
 
     <div class="container-fluid">
 
+        <!-- the slice of the page -->
 
-
-        <div class="row">
+        <div class="row justify-content-between ">
             <!-- aside bar -->
-            <div class=" col-sm-3 col-3 w-25 h-100 d-none  d-md-block ">
+            <div class=" col-2 col-md-2  aside-left ">
                 <div class="aside d-flex flex-column  border-end flex-shrink-0 p-3 "
                     style="width: 280px; height:90vh;  position: fixed; ">
 
@@ -398,332 +203,10 @@ if (isset($_SESSION['email'])) :
             </div>
 
             <!-- post_area -->
-            <div class="posts mt-5 pt-5 col-sm-4 col-md-6 col-12 w-50">
-                <main>
-                    <div class="album ">
-                        <div class="container">
-                            <!-- i use that while to showing data from data base -->
-                            <?php
-                                    $user_post = mysqli_query($conn, "SELECT * FROM post ORDER BY create_at desc  ");
-                                    while ($post = mysqli_fetch_array($user_post)) :
-                                        $post_user_id = $post['user_id'];
-                                        // to create a comment we need   user_id and post id 
+            <?php include('./welcome_pots_area.php');?>
 
-                                        $user_info = mysqli_query($conn, "SELECT * FROM users WHERE  id='$post_user_id'   ");
-                                        while ($user_post_from_db = mysqli_fetch_array($user_info)) : ?>
-
-                            <!-- 1 card posts -->
-                            <div class="row mother_card justify-content-center ">
-                                <div class="col-8 mb-4 ">
-                                    <div class="card " style=" background-color: #f2f2f2; border: unset; ">
-                                        <div class="card-head  d-flex justify-content-between align-items-center   "
-                                            style="height:100px; padding:0 15px 0 15px; ">
-                                            <div>
-
-
-                                                <img src="../media/profile_img/<?php echo $user_post_from_db['profile'] ?>"
-                                                    alt="" width="64" height="64" class="rounded-circle me-2">
-                                                <strong><?php echo $user_post_from_db['fname'] . " " . $user_post_from_db['lname'] ?></strong>
-                                                <small class="text-muted"><i class="fa-solid fa-circle text-secondary "
-                                                        style="width: 6px; margin:0 5px 0 10px;"></i></small>
-                                                <small
-                                                    class="text-muted"><?php echo getTimeDifference($post['create_at']) . " "  ?></small>
-                                            </div>
-                                            <div class="dropdown d-flex align-items-end">
-
-                                                <a href="#" class=" link-dark text-decoration-none " id="dropdownUser2"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa-solid fa-ellipsis fs-3"></i>
-                                                </a>
-                                                <ul class="dropdown-menu text-small shadow"
-                                                    aria-labelledby="dropdownUser2">
-                                                    <li><a class="dropdown-item" href="#">New post</a></li>
-                                                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                                    <li>
-                                                        <hr class="dropdown-divider">
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#imageModal<?php echo $post['post_id'] ?>">
-
-                                            <img src="../media/post_img/<?php echo $post['image'] ?>"
-                                                class="bd-placeholder-img card-img-top" alt="" width="100%">
-
-                                        </a>
-                                        <!-- card body -->
-                                        <div class="card-body  p-0 m-0 ps-1 pt-1">
-                                            <div class="d-flex justify-content-between  align-items-center">
-                                                <div class="btn-group ps-0 ms-0">
-                                                    <a href="#" class="link-dark fs-4 ">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </a>
-                                                    <a href="#" class="link-dark fs-4 ms-2" data-bs-toggle="modal"
-                                                        data-bs-target="#imageModal<?php echo $post['post_id'] ?>">
-                                                        <img src="../media/post_img/<?php echo $post['image'] ?>"
-                                                            class="bd-placeholder-img d-none card-img-top" alt=""
-                                                            width="100%">
-
-                                                        <i class="fa-regular fa-comment"></i>
-                                                    </a>
-                                                </div>
-                                                <small
-                                                    class="text-muted"><?php echo getTimeDifference($post['create_at']) . " "  ?></small>
-                                            </div>
-                                            <!-- description -->
-                                            <strong
-                                                class="fs-6"><?php echo $user_post_from_db['fname'] . " " . $user_post_from_db['lname'] ?></strong>
-                                            <small class="card-text pt-2"><?php echo $post['text'] ?>.</small>
-                                            <!-- comment form -->
-                                            <form method="Post" action="">
-
-                                                <div class="input-group ms-0 ps-0  mb-3">
-                                                    <input name="get_id" type="hidden" class="form-control" value="15">
-                                                    <input name="comment" type="text" class="form-control"
-                                                        placeholder="Add a comment..." aria-label="Recipient's username"
-                                                        aria-describedby="button-addon2" spellcheck="false"
-                                                        data-ms-editor="true">
-                                                    <input class="btn btn-outline-secondary" value="Post" type="submit"
-                                                        id="button-addon2">
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <!-- popup model -->
-                                        <div class="modal popup-model fade"
-                                            id="imageModal<?php echo $post['post_id'] ?>" tabindex="-1"
-                                            aria-labelledby="imageModalLabel<?php echo $post['post_id'] ?>"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-8 p-0">
-                                                                <!-- image  -->
-                                                                <img src="../media/post_img/<?php echo $post['image'] ?>"
-                                                                    class="img-fluid" alt="">
-                                                            </div>
-                                                            <!-- wihte space -->
-                                                            <div
-                                                                class="col-md-4 p-0 modal-body-content  d-flex flex-column justify-content-between">
-                                                                <!-- profile picture -->
-                                                                <div class="row ms-2 mt-3">
-
-                                                                    <div class=" col-6 text-start d-inline ">
-                                                                        <div
-                                                                            class="profile-img d-flex align-items-end d-inline">
-
-                                                                            <img src="../media/profile_img/<?php echo $data['profile'] ?>"
-                                                                                alt="" width="64" height="64"
-                                                                                class="rounded-circle me-2">
-                                                                            <strong><?php echo $data['fname'] . " " . $data['lname'] ?></strong>
-
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <div class=" col-6 text-end d-inline ">
-
-                                                                        <div class="btn-group dropend">
-                                                                            <button type="button" class="border-0 fs-4"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-expanded="false">
-                                                                                <i class="fas fa-ellipsis"></i>
-                                                                            </button>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a class="dropdown-item text-danger"
-                                                                                        href="delete.php?id=<?php echo  $post['post_id'] ?>">Delelte</a>
-                                                                                </li>
-
-                                                                                <li><a class="dropdown-item"
-                                                                                        href="#">Share</a></li>
-                                                                                <li><a class="dropdown-item"
-                                                                                        href="#">Cancel</a></li>
-                                                                            </ul>
-                                                                        </div>
-
-
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-
-                                                                    </div>
-
-                                                                </div>
-                                                                <hr>
-                                                                <!-- description  area -->
-                                                                <div class="row ms-2 mt-3">
-                                                                    <div
-                                                                        class=" col-3 align-items-center text-start d-inline ">
-                                                                        <div
-                                                                            class="profile-img d-flex align-items-end d-inline">
-                                                                            <img src="../media/profile_img/<?php echo $data['profile'] ?>"
-                                                                                alt="" width="72" height="72"
-                                                                                class="rounded-circle me-2">
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <div class="text-start mt-3  col-7 ">
-                                                                        <strong><?php echo $data['fname'] . " " . $data['lname'] ?></strong>
-                                                                        <span class="d-block text-trance text-truncate "
-                                                                            style="width:100%;"><?php echo $post['text'] ?></span>
-
-                                                                    </div>
-                                                                </div>
-                                                                <!--  comment area-->
-                                                                <!-- check if there a comment -->
-                                                                <?php
-                                                                                $post_id_for_comment = $post['post_id'];
-                                                                                $check_comment = mysqli_query($conn, "SELECT * FROM `comment` WHERE post_id ='$post_id_for_comment'");
-                                                                                if (mysqli_num_rows($check_comment) < 1) : //if there a row in comment table
-                                                                                ?>
-
-                                                                <div class="row ms-2 mt-3  ">
-
-                                                                    <div class="text-start mt-3  col-7 ">no comment
-                                                                    </div>
-
-                                                                </div>
-                                                                <?php else : ?>
-                                                                <!-- comments --><ul class="list-group list-group-flush p-0 m-0   ">
-                                                                <?php //echo $post['text'] 
-                                                                                    $post_id_for_comment = $post['post_id'];
-                                                                                    $comments_query = mysqli_query($conn, "SELECT * FROM `comment` WHERE post_id ='$post_id_for_comment'");
-                                                                                    while ($comment = mysqli_fetch_array($comments_query)) :
-                                                                                        $user_comment_id = $comment['user_id'];
-                                                                                        //to get each comment
-                                                                                        $user_comment_query = mysqli_query($conn, "SELECT * FROM users WHERE  id='$user_comment_id'   ");
-                                                                                        while ($comment_by_comment = mysqli_fetch_array($user_comment_query)) :
-                                                                                            $user_id_from_comment = $comment['user_id']; ?>
-
-
-
-
-
-                                                                
-                                                                
-                                                                    <li class="list-group-item p-0 m-0">
-                                                                        <div class="row ms-2 mt-3">
-                                                                            <div
-                                                                                class="col-3 align-items-center text-start d-inline ">
-                                                                                <div
-                                                                                    class="profile-img d-flex align-items-end d-inline">
-                                                                                    <img src="../media/profile_img/<?php echo $comment_by_comment['profile'] ?>"
-                                                                                        alt="" width="64" height="64"
-                                                                                        class="rounded-circle me-2">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="text-start mt-3 col-7">
-                                                                                <strong><?php echo $comment_by_comment['fname'] . " " . $comment_by_comment['lname'] ?></strong>
-                                                                                <small
-                                                                                    class="d-flex  justify-content-between text-trance text-truncate"
-                                                                                    style="width:100%;">
-                                                                                    <!-- comment -->
-                                                                                    <?php echo $comment['text'] ?>
-                                                                                    
-                                                                                    <a  href="delete_cmt.php?id=<?php echo  $comment['comment_id'] ?>">
-                                                                                <i class="fa-solid fa-trash text-danger"></i>
-                                                                                    
-                                                                                           
-                                                                                    </a>
-                                                                                </small>
-                                                                            </div>
-
-
-
-                                                                        </div>
-                                                                    </li>
-                                                                
-                                                                
-
-                                                                <?php endwhile ?>
-                                                                <?php endwhile ?>
-                                                            </ul>
-                                                                <?php endif ?>
-                                                                <!-- create comment -->
-                                                                <div class="comment text-center mt-auto ">
-                                                                    <form method="Post" action="">
-
-                                                                        <div class="input-group ms-0 ps-0  mb-3">
-                                                                            <?php
-                                                                                            echo '<input name="get_id" type="hidden" class="form-control"  value="'. $post["post_id"].'">'; ?>
-
-
-                                                                            <input name="comment" type="text"
-                                                                                class="form-control"
-                                                                                placeholder="Add a comment..."
-                                                                                aria-label="Recipient's username"
-                                                                                aria-describedby="button-addon2">
-                                                                            <input class="btn btn-outline-secondary"
-                                                                                value="Post" type="submit"
-                                                                                id="button-addon2">
-                                                                        </div>
-                                                                    </form>
-                                                                    
-
-                                                                </div>
-                                                            </div>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-
-
-
-
-                            <?php endwhile; ?>
-
-                            <?php endwhile; ?>
-                            <script>
-                            const imageLinks = document.querySelectorAll("[data-bs-toggle='modal']");
-
-                            imageLinks.forEach((link) => {
-                                link.addEventListener("click", (event) => {
-                                    event.preventDefault();
-                                    const modalTarget = link.getAttribute("data-bs-target");
-                                    const modal = document.querySelector(modalTarget);
-                                    const modalBody = modal.querySelector(".modal-body");
-                                    const image = link.querySelector("img");
-
-                                    // Remove old image from modal
-                                    const oldImage = modalBody.querySelector("img");
-                                    if (oldImage) {
-                                        oldImage.remove();
-                                    }
-
-                                    // Create new image element
-                                    const newImage = document.createElement("img");
-                                    newImage.src = image.src;
-                                    newImage.classList.add("img-fluid");
-
-                                    // Add new image to modal
-                                    modalBody.querySelector(".col-md-8").appendChild(newImage);
-
-                                    // Show modal
-                                    const modalInstance = new bootstrap.Modal(modal);
-                                    modalInstance.show();
-                                });
-                            });
-                            </script>
-                        </div>
-                    </div>
-
-                </main>
-            </div>
-            <div class=" col-sm-3 col-3 w-25 h-100 d-none  d-md-block ">
+            <!-- aside bar-rght -->
+            <div class=" col-2 col-md-2    aside-right ">
                 <div class="aside-right d-flex flex-column  border-start flex-shrink-0  "
                     style="width: 95%; height:90vh;  position: fixed; ">
                     <use xlink:href="#bootstrap"></use>
@@ -793,12 +276,13 @@ if (isset($_SESSION['email'])) :
         </div>
 
     </div>
-    </div>
-    </div>
+
 </body>
+<script src="../bootstrap-file/js/welcome.js"></script>
 <?php
 
     endwhile;
+    include('./footer.php');
 
 else :
     $pageTitle = "Postify";

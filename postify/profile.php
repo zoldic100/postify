@@ -59,75 +59,8 @@ if (isset($_SESSION['email'])) :
 ?>
 
 
-        <html>
-
-        <head>
-
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" href="../bootstrap-file/css/profile.css">
-        </head>
-        <style>
-            .model-popup .modal-dialog {
-                max-width: 62%;
-            }
-
-            .model-popup .modal-body {
-                padding: 0;
-                background-color: #f2f2f2;
-            }
-
-            .model-popup .modal-body .row {
-                margin-right: 0;
-                padding-right: 0;
-
-            }
-
-            .model-popup .modal-body img {
-                max-width: 100%;
-                height: auto;
-            }
-
-            .model-popup .modal-body .modal-body-content {
-                background-color: #f2f2f2;
-                padding-right: 01px;
-
-                height: auto;
-            }
-
-            .model-popup .modal-body form input {
-                background-color: #f2f2f2;
-
-                border: unset;
-
-            }
-
-            .model-popup .modal-body form input[type=text]:active {
-                box-shadow: none;
-
-                border: unset;
-            }
-
-            .model-popup .modal-body form input[type=text]:focus {
-                box-shadow: none;
-
-                border: unset;
-            }
-
-            .model-popup .modal-body form input[type=submit]:hover {
-                color: black;
-                font-weight: bold;
-
-            }
-
-            .model-popup .modal-body form input[type=submit] {
-                color: blueviolet;
-                font-weight: lighter;
-
-
-
-            }
-        </style>
+        
+       
 
         <body>
             <!-- popup form -->
@@ -405,37 +338,7 @@ if (isset($_SESSION['email'])) :
                                 </div>
                             </div>
 
-                            <script>
-                                const imageLinks = document.querySelectorAll("[data-bs-toggle='modal']");
-
-                                imageLinks.forEach((link) => {
-                                    link.addEventListener("click", (event) => {
-                                        event.preventDefault();
-                                        const modalTarget = link.getAttribute("data-bs-target");
-                                        const modal = document.querySelector(modalTarget);
-                                        const modalBody = modal.querySelector(".modal-body");
-                                        const image = link.querySelector("img");
-
-                                        // Remove old image from modal
-                                        const oldImage = modalBody.querySelector("img");
-                                        if (oldImage) {
-                                            oldImage.remove();
-                                        }
-
-                                        // Create new image element
-                                        const newImage = document.createElement("img");
-                                        newImage.src = image.src;
-                                        newImage.classList.add("img-fluid");
-
-                                        // Add new image to modal
-                                        modalBody.querySelector(".col-md-8").appendChild(newImage);
-
-                                        // Show modal
-                                        const modalInstance = new bootstrap.Modal(modal);
-                                        modalInstance.show();
-                                    });
-                                });
-                            </script>
+                           
                         </main>
 
                     </div>
@@ -446,19 +349,12 @@ if (isset($_SESSION['email'])) :
 
             </div>
         </body>
-
-        </html>
-
-
-
-
-
-
-
-
-
+        <script src="../bootstrap-file/js/profile.js"></script>
     <?php
+
     endwhile;
+    include('./footer.php');
+
 else :
     $pageTitle = "Postify";
     include './layout.php'; ?>

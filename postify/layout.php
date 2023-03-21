@@ -17,10 +17,12 @@
   <link rel="icon" href="../media/logo/icon.png" type="image/x-icon" />
   <title><?= $pageTitle ?></title>
 
-  <!-- change photo pupup -->
+  <!--  pupups -->
 
 
   <link rel="stylesheet" href="../bootstrap-file/css/chang_profile.css">
+  <link rel="stylesheet" href="../bootstrap-file/css/welcome.css">
+  <!-- <link rel="stylesheet" href="../bootstrap-file/css/user_profile.css"> -->
   
   <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -51,10 +53,10 @@
           if (isset($_SESSION['email'])) :
             echo ' <li class="nav-item"> 
     <a class="nav-link" href="./welcom.php">Home</a>
-  </li> 
+   </li> 
    <li class="nav-item"> 
     <a class="nav-link" href="./profile.php">Profile</a>
-  </li> 
+   </li> 
      <li class="nav-item">
       <a class="nav-link" href="./logout.php">Log Out</a>
     </li>';
@@ -69,7 +71,7 @@
           <a class="nav-link" href="./signup.php">Sign up</a>
         </li>';
           endif ?>
-</ul>
+    </ul>
 
       </div>
     </div>
@@ -120,8 +122,3 @@
     </div>
 
   </div> -->
-    <script src="../bootstrap-file/js/bootstrap.bundle.min.js"></script>
-    <script src="../bootstrap-file/js/all.min.js"></script>
-</body>
-
-</html>
